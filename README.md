@@ -1,4 +1,4 @@
-# AWS_route53_dynamic_dns
+# AWS Route 53 with Dynamic DNS
 This is a bash script that will automatically update route53 DNS records
 This can be used if you don't have a static IP for your domain.
 
