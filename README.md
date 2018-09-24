@@ -64,7 +64,7 @@ Configure the AWS CLI and provide the IAM User Access Key ID and Secret Access K
 ```
 Make the route53_update_dns script executable
 ```
-    sudo chmod +x /config/scripts
+    sudo chmod +x /config/scripts/route53_update_dns.sh
 ```
 Create a cron job or a scheduled task to execute the script at a pre-defined interval (e.g 1m, 5m, 60m)
 ```
