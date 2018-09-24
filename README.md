@@ -37,32 +37,40 @@ Save the IAM User Access Key ID and Secret Access Key
 Install the AWS CLI on the edge router
 
 Download the AWS CLI bundle to a computer (not directly to the router because it won't be able to unzip it)
-    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-
+````
+  curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+````
 Unzip the bundle and copy the files to the edge router
+```    
     unzip awscli-bundle.zip
     scp -r awscli-bundle user@192.168.1.1:~
-
+```
 Copy the route53_update_dns script to the router
+```
     scp route53_update_dns.sh user@192.168.1.1:/config/scripts
-
+```
 SSH to the router and install the AWS CLI
+```
     cd ~/awscli-bundle
     sudo ./install -b /bin/aws
-
+```
 Check AWS CLI is installed by validating the version
+```
     sudo aws --version
-    
+```    
 Configure the AWS CLI and provide the IAM User Access Key ID and Secret Access Key
+```
     sudo aws configure
-
+```
 Make the route53_update_dns script executable
+```
     sudo chmod +x /config/scripts
-    
+```
 Create a cron job or a scheduled task to execute the script at a pre-defined interval (e.g 1m, 5m, 60m)
+```
     configure
     set system task-scheduler task route53_update_dns executable path /config/scripts/route53_update_dns.sh
     set system task-scheduler task route53_update_dns interval 1m
     commit
-    
+```
 For the Ubiquity routers, make the changes persistent by adding the scheduled task to the config.gateway.json file and forcing a reprovision. 
